@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>琉生 &amp; 真由</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Cormorant+Garamond:ital,wght@1,500&display=swap">
+<style>
+:root{--bg:#fbf8f1;--ink:#3b3330;--sub:#8d8178;--shu:#b8332a;--gold:#ad8a55;--line:#e3dcd0}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Serif JP",serif;line-height:1.9;-webkit-text-size-adjust:100%}
+.en{font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:.03em}
+.hero{position:relative;height:88svh;min-height:460px;background:#2f2b28 url("img/top.jpg") 58% center/cover no-repeat;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:0 16px 9svh}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,16,.72),rgba(20,18,16,.15) 45%,rgba(20,18,16,0) 70%)}
+.hero>*{position:relative}
+.hero h1{font-size:clamp(30px,8.5vw,52px);font-weight:500;margin:0;line-height:1.15;color:#f6ead2}
+.hero p{margin:12px 0 0;letter-spacing:.3em;font-size:14px}
+.hero small{display:block;letter-spacing:.25em;font-size:11px;opacity:.85}
+main{max-width:560px;margin:0 auto;padding:0 16px 72px}
+section{padding:52px 0 0}
+h2{text-align:center;font-weight:500;font-size:30px;margin:0 0 18px;color:var(--shu)}
+.msg{font-size:15px;text-align:center;margin:0}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery figure{margin:0;background:#fff;padding:6px 6px 10px;box-shadow:0 1px 5px rgba(0,0,0,.1)}
+.gallery img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.gallery figcaption{font-size:12px;color:var(--sub);text-align:center;margin-top:6px;line-height:1.5}
+.gallery figure:nth-child(4n+1){transform:rotate(-1.2deg)}
+.gallery figure:nth-child(4n+2){transform:rotate(1deg)}
+.gallery figure:nth-child(4n+3){transform:rotate(.8deg)}
+.gallery figure:nth-child(4n){transform:rotate(-.8deg)}
+.mystery{background:#2f2b28;color:#f3ede4;border-radius:6px;padding:34px 20px;text-align:center}
+.mystery h2{color:#e2c48f}
+.order{font-size:14.5px;border-top:1px solid #5c544c;border-bottom:1px solid #5c544c;padding:14px 0;margin:0 0 22px}
+.order b{color:#e2c48f;font-weight:600}
+#pw{width:100%;max-width:300px;font:inherit;font-size:22px;letter-spacing:.25em;text-align:center;padding:10px;border:1.5px solid #d9bf94;background:transparent;color:#fff;border-radius:4px;outline:none}
+#pw::placeholder{color:#8f857a;letter-spacing:.1em}
+#go{display:block;margin:16px auto 0;font:inherit;font-size:15px;padding:10px 40px;border:none;border-radius:30px;background:#d9bf94;color:#2f2b28;cursor:pointer}
+#go:disabled{opacity:.6}
+.result{min-height:28px;margin-top:14px;font-size:14px;color:#efb1a8}
+.lock{font-size:40px;line-height:1;margin-bottom:6px;transition:transform .6s}
+.unlocked .lock{transform:rotate(-20deg) scale(1.15)}
+#movie{display:none;margin-top:8px;animation:fade 1.2s ease}
+#movie .video{position:relative;aspect-ratio:16/9;background:#000;border-radius:4px;overflow:hidden}
+#movie iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#movie .wait{display:flex;align-items:center;justify-content:center;height:100%;color:#bbb;font-size:13px;padding:0 16px}
+#movie p{font-size:14px;margin:0 0 12px}
+#movie .sound{font-size:12.5px;color:#cfc4b4;margin:12px 0 0;line-height:1.7}
+.closed{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;font-size:15px;color:var(--sub)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;letter-spacing:.2em}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1 class="en">Thank you for coming today!</h1>
+  <p>琉生 &amp; 真由<small>2026.10.31</small></p>
+</div>
+<main>
+  <section>
+    <h2 class="en">Message</h2>
+    <p class="msg">本日はお越しいただき、ありがとうございます。<br>ささやかですが、ふたりから<br>ちょっとした仕掛けを用意しました。<br>最後まで楽しんでもらえたら嬉しいです。</p>
+  </section>
+  <section>
+    <h2 class="en">Memories</h2>
+    <div class="gallery">
+      <figure><img src="img/g1.jpg" alt="" loading="lazy"><figcaption>チームラボ</figcaption></figure>
+      <figure><img src="img/g2.jpg" alt="" loading="lazy"><figcaption>海へ</figcaption></figure>
+      <figure><img src="img/g3.jpg" alt="" loading="lazy"><figcaption>冬の山形、銀山</figcaption></figure>
+      <figure><img src="img/g4.jpg" alt="" loading="lazy"><figcaption>前撮り</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <div class="mystery" id="mystery">
+      <div class="lock" id="lock">🔒</div>
+      <h2 class="en">Mystery</h2>
+      <p class="order">お手元の<b>封筒</b>を開けて、<br>入っている紙に書かれた指示に従って<br><b>合言葉</b>を入力してください。</p>
+      <div id="form">
+        <input id="pw" placeholder="合言葉" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="合言葉">
+        <button id="go">ひらく</button>
+        <div class="result" id="result" role="status"></div>
+      </div>
+      <div id="movie">
+        <p>謎解きおつかれさまでした！</p>
+        <div class="video" id="videoBox"></div>
+        <p class="sound">音を出さないで見てもらっても構いません。<br>会場でご覧の際は音量にご注意ください。</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>琉生 &amp; 真由</footer>
+<script>
+const CLOSE_AT = new Date("2026-11-01T00:00:00+09:00");
+const SECRET = {"salt": "SmVNZUMuEOkYk0zvhP5rdw==", "iv": "4Bj3jSVG/C/Mh8UN", "ct": "BiuwWHSAahr0JsXWQMlgrslQTI8AZhqglWJ8S1Qr", "iter": 150000};
+if (new Date() >= CLOSE_AT) {
+  document.body.innerHTML = '<div class="closed">公開は終了しました。<br>ご覧いただき、ありがとうございました。</div>';
+}
+const team = new URLSearchParams(location.search).get("c") || "";
+const norm = s => s.replace(/[ぁ-ゖ]/g, c => String.fromCharCode(c.charCodeAt(0) + 0x60))
+                   .replace(/[\s　]/g, "").replace(/[ー－-]/g, "");
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function unlock(word) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(norm(word)), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name: "PBKDF2", salt: b64(SECRET.salt), iterations: SECRET.iter, hash: "SHA-256"},
+                                            base, {name: "AES-GCM", length: 256}, false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt({name: "AES-GCM", iv: b64(SECRET.iv)}, key, b64(SECRET.ct));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+async function check() {
+  const btn = document.getElementById("go"), res = document.getElementById("result");
+  const word = document.getElementById("pw").value;
+  if (!norm(word)) return;
+  btn.disabled = true; res.textContent = "";
+  try {
+    const data = await unlock(word);
+    document.getElementById("lock").textContent = "🔓";
+    document.getElementById("mystery").classList.add("unlocked");
+    document.getElementById("form").style.display = "none";
+    const box = document.getElementById("videoBox"), id = data.videos[team];
+    if (id) {
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&playsinline=1";
+      f.title = "ムービー"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+      box.appendChild(f);
+    } else {
+      box.innerHTML = '<div class="wait">' + (team ? "ムービーは準備中です。" : "カードのQRコードから開いたページでご覧ください。") + "</div>";
+    }
+    document.getElementById("movie").style.display = "block";
+  } catch (e) {
+    res.textContent = "合言葉がちがうようです。同じテーブルの方と相談してみてください。";
+  } finally {
+    btn.disabled = false;
+  }
+}
+document.getElementById("go").onclick = check;
+document.getElementById("pw").addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing) check(); });
+</script>
+</body>
+</html>
