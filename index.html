@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="referrer" content="no-referrer">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>琉生 &amp; 真由</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Cormorant+Garamond:ital,wght@1,500&display=swap">
@@ -96,8 +96,9 @@ function showMovie(data) {
   const box = document.getElementById("videoBox"), id = data.videos[team];
   if (id) {
     const f = document.createElement("iframe");
-    f.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&playsinline=1";
+    f.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&playsinline=1&origin=" + encodeURIComponent(location.origin);
     f.title = "ムービー"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+    f.referrerPolicy = "strict-origin-when-cross-origin";  // YouTube は参照元がないと「設定エラー」で再生できない
     box.appendChild(f);
   } else {
     box.innerHTML = '<div class="wait">' + (team ? "ムービーは準備中です。" : "カードのQRコードから開いたページでご覧ください。") + "</div>";
