@@ -65,21 +65,12 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;let
     <p class="msg">本日はお越しいただき、ありがとうございます。<br>ささやかですが、ふたりから<br>ちょっとした仕掛けを用意しました。<br>最後まで楽しんでもらえたら嬉しいです。</p>
   </section>
   <section>
-    <h2 class="en">Memories</h2>
-    <div class="gallery">
-      <figure><img src="img/g1.jpg" alt="" loading="lazy"><figcaption>ふたりでおでかけ</figcaption></figure>
-      <figure><img src="img/g2.jpg" alt="" loading="lazy"><figcaption>前撮り（庭園）</figcaption></figure>
-      <figure><img src="img/g3.jpg" alt="" loading="lazy"><figcaption>プロポーズ</figcaption></figure>
-      <figure><img src="img/g4.jpg" alt="" loading="lazy"><figcaption>前撮り</figcaption></figure>
-    </div>
-  </section>
-  <section>
     <div class="mystery" id="mystery">
       <div class="lock" id="lock">🔒</div>
       <h2 class="en">Mystery</h2>
-      <p class="order">お手元の<b>封筒</b>を開けて、<br>入っている紙に書かれた指示に従って<br><b>合言葉</b>を入力してください。</p>
+      <p class="order">お手元の<b>封筒</b>を開けて、<br>入っている紙に書かれた指示に従って<br><b>秘密の言葉</b>を入力してください。</p>
       <div id="form">
-        <input id="pw" placeholder="合言葉" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="合言葉">
+        <input id="pw" placeholder="秘密の言葉" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="秘密の言葉">
         <button id="go">ひらく</button>
         <div class="result" id="result" role="status"></div>
       </div>
@@ -94,7 +85,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;let
 <footer>琉生 &amp; 真由</footer>
 <script>
 const CLOSE_AT = new Date("2026-11-01T00:00:00+09:00");
-const SECRET = {"salt": "c+DWh7U+43qKve8uZI8J0Q==", "iv": "v4RygsQ6gfCIj4po", "ct": "Un0YoUFEzbfNnXz172r8qkC1WBhJRnZw173cz3bC", "iter": 150000};
+const SECRET = {"salt": "x0sRJ95Y9KzXaXW7N8ztcQ==", "iv": "evPsR3ztB0R1cV8p", "ct": "SHkMIuA3i8BnsRX8iPPbo8MCWHAc+Idpwmakqwd1", "iter": 150000};
 if (new Date() >= CLOSE_AT) {
   document.body.innerHTML = '<div class="closed">公開は終了しました。<br>ご覧いただき、ありがとうございました。</div>';
 }
@@ -130,7 +121,7 @@ async function check() {
     }
     document.getElementById("movie").style.display = "block";
   } catch (e) {
-    res.textContent = "合言葉がちがうようです。同じテーブルの方と相談してみてください。";
+    res.textContent = "秘密の言葉がちがうようです。同じテーブルの方と相談してみてください。";
   } finally {
     btn.disabled = false;
   }
