@@ -93,7 +93,7 @@ async function unlock(word) {
   const plain = await crypto.subtle.decrypt({name: "AES-GCM", iv: b64(SECRET.iv)}, key, b64(SECRET.ct));
   return JSON.parse(new TextDecoder().decode(plain));
 }
-const LABELS = {"c1": "新郎_家族", "c2": "新郎_会社", "c3": "新郎_研究室", "c4": "新郎_部活", "c5": "新婦_家族", "c6": "新婦_友人", "c7": "新婦_職場", "c8": "新婦_大学", "c9": "新婦_部活"};          // QRコードの確認用：どのコミュニティの動画かを表示（本番では空）
+const LABELS = {};          // QRコードの確認用：どのコミュニティの動画かを表示（本番では空）
 function showMovie(data) {
   const box = document.getElementById("videoBox"), id = data.videos[team];
   if (LABELS[team]) {
