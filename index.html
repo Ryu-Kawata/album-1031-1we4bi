@@ -66,16 +66,8 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;let
   </section>
   <section>
     <div class="mystery" id="mystery">
-      <div class="lock" id="lock">🔒</div>
-      <h2 class="en">Mystery</h2>
-      <p class="order">お手元の<b>封筒</b>を開けて、<br>入っている紙に書かれた指示に従って<br><b>秘密の言葉</b>を入力してください。</p>
-      <div id="form">
-        <input id="pw" placeholder="秘密の言葉" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="秘密の言葉">
-        <button id="go">ひらく</button>
-        <div class="result" id="result" role="status"></div>
-      </div>
+      <h2 class="en">Movie</h2>
       <div id="movie">
-        <p>謎解きおつかれさまでした！</p>
         <div class="video" id="videoBox"></div>
         <p class="sound">音を出さないで見てもらっても構いません。<br>会場でご覧の際は音量にご注意ください。</p>
       </div>
@@ -85,7 +77,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;let
 <footer>琉生 &amp; 真由</footer>
 <script>
 const CLOSE_AT = new Date("2026-11-01T00:00:00+09:00");
-const SECRET = {"salt": "x0sRJ95Y9KzXaXW7N8ztcQ==", "iv": "evPsR3ztB0R1cV8p", "ct": "SHkMIuA3i8BnsRX8iPPbo8MCWHAc+Idpwmakqwd1", "iter": 150000};
+const SECRET = {"plain": {"videos": {}}};
 if (new Date() >= CLOSE_AT) {
   document.body.innerHTML = '<div class="closed">公開は終了しました。<br>ご覧いただき、ありがとうございました。</div>';
 }
@@ -100,6 +92,18 @@ async function unlock(word) {
   const plain = await crypto.subtle.decrypt({name: "AES-GCM", iv: b64(SECRET.iv)}, key, b64(SECRET.ct));
   return JSON.parse(new TextDecoder().decode(plain));
 }
+function showMovie(data) {
+  const box = document.getElementById("videoBox"), id = data.videos[team];
+  if (id) {
+    const f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&playsinline=1";
+    f.title = "ムービー"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+    box.appendChild(f);
+  } else {
+    box.innerHTML = '<div class="wait">' + (team ? "ムービーは準備中です。" : "カードのQRコードから開いたページでご覧ください。") + "</div>";
+  }
+  document.getElementById("movie").style.display = "block";
+}
 async function check() {
   const btn = document.getElementById("go"), res = document.getElementById("result");
   const word = document.getElementById("pw").value;
@@ -110,24 +114,19 @@ async function check() {
     document.getElementById("lock").textContent = "🔓";
     document.getElementById("mystery").classList.add("unlocked");
     document.getElementById("form").style.display = "none";
-    const box = document.getElementById("videoBox"), id = data.videos[team];
-    if (id) {
-      const f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&playsinline=1";
-      f.title = "ムービー"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
-      box.appendChild(f);
-    } else {
-      box.innerHTML = '<div class="wait">' + (team ? "ムービーは準備中です。" : "カードのQRコードから開いたページでご覧ください。") + "</div>";
-    }
-    document.getElementById("movie").style.display = "block";
+    showMovie(data);
   } catch (e) {
     res.textContent = "秘密の言葉がちがうようです。同じテーブルの方と相談してみてください。";
   } finally {
     btn.disabled = false;
   }
 }
-document.getElementById("go").onclick = check;
-document.getElementById("pw").addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing) check(); });
+if (SECRET.plain) {                 // 秘密の言葉なし（テスト用）：すぐに動画を出す
+  showMovie(SECRET.plain);
+} else {
+  document.getElementById("go").onclick = check;
+  document.getElementById("pw").addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing) check(); });
+}
 </script>
 </body>
 </html>
