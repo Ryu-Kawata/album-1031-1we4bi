@@ -88,8 +88,8 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;let
 <footer>琉生 &amp; 真由</footer>
 <script>
 const CLOSE_AT = new Date("2026-11-01T00:00:00+09:00");
-const SECRET = {"salt": "DTVmx7BiTKTJcuOcR7Ka1A==", "iv": "80sybAJ+gtfJtivH", "ct": "XbXPELfiOOOSWUcp3YGRaaEble12OoXZ6zue2RXonm6ifU5Ulgs4iRSyiOKJzHKVOWPMb5f/7My2SoZDWJAzrl+XoiR7Ea1YFsBeFi0IeyfKAX5anc4LIMZhScweArwfrenENxkgMe+Ox7ty76kJnm2QbOaI9YaW3Ov9P6ZsrlqKFoIfpCLKhb7TLI0otQfnR6nCYvCx8LpUcrkPfs7Ict9zEWW3w9AMW/elfMKYjA==", "iter": 150000};
-const OPEN = {"videos": {"c1": "bByhGLAbvRM", "c5": "BmBcLBHT3zE"}};              // 謎解きなしのコミュニティ（家族など）：秘密の言葉なしで見られる動画
+const SECRET = {"salt": "2tmNrdds2kgKxRVFUO+yJw==", "iv": "k6Y6hlNojZD/RLdQ", "ct": "sz7vipVY6uqYARPnZrKG1i5kl+tnpFqLzOeUtr86T0dwIN7yzjI+62AlxPafdcF/h3xDTTo+KkYy2B3ZFaTWbfEysIll09UjW6bIh1EowTWeeJhBuTz9RpLmMdiB7xCCM7sK26rA17nzXd4t2Jj+XZuiUnzeaFmbFnqtPrhvLSSelJXvdVN816ctNT6sDUYu605bB2bdC/ViDTOwSC0WGBD9YBfWsbHcE79uSYayIQ==", "iter": 150000};
+const OPEN = {"videos": {"c1": "bByhGLAbvRM", "c5": "BmBcLBHT3zE"}, "message": "本日はお越しいただき、ありがとうございます。<br>ささやかですが、ふたりから<br>ムービーを用意しました。<br>お時間のあるときに、ぜひご覧ください。"};              // 謎解きなしのコミュニティ（家族など）：秘密の言葉なしで見られる動画
 if (new Date() >= CLOSE_AT) {
   document.body.innerHTML = '<div class="closed">公開は終了しました。<br>ご覧いただき、ありがとうございました。</div>';
 }
@@ -145,6 +145,7 @@ if (SECRET.plain) {                 // 秘密の言葉なし（テスト用）�
 } else if (OPEN.videos[team]) {     // 謎解きなしのコミュニティ：鍵と入力欄を出さずに、すぐ動画を出す
   for (const id of ["lock", "order", "form", "done"]) document.getElementById(id).style.display = "none";
   document.querySelector("#mystery h2").textContent = "Movie";
+  document.querySelector(".msg").innerHTML = OPEN.message;   // 「ちょっとした仕掛け」ではなく、ムービーの案内
   showMovie(OPEN);
 } else {
   document.getElementById("go").onclick = check;
