@@ -66,19 +66,30 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:40px 0 48px;let
     <p class="msg">本日はお越しいただき、ありがとうございます。<br>ささやかですが、ふたりから<br>ちょっとした仕掛けを用意しました。<br>最後まで楽しんでもらえたら嬉しいです。</p>
   </section>
   <section>
+<!--MYSTERY-->
     <div class="mystery" id="mystery">
-      <h2 class="en">Movie</h2>
+      <div class="lock" id="lock">🔒</div>
+      <h2 class="en">Mystery</h2>
+      <p class="order" id="order">お手元の<b>封筒</b>を開けて、<br>入っている紙に書かれた指示に従って<br><b>秘密の言葉</b>を入力してください。</p>
+      <div id="form">
+        <input id="pw" placeholder="秘密の言葉" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="秘密の言葉">
+        <button id="go">ひらく</button>
+        <div class="result" id="result" role="status"></div>
+      </div>
       <div id="movie">
+        <p id="done">謎解きおつかれさまでした！</p>
         <div class="video" id="videoBox"></div>
         <p class="sound">音を出さないで見てもらっても構いません。<br>会場でご覧の際は音量にご注意ください。</p>
       </div>
     </div>
+<!--/MYSTERY-->
   </section>
 </main>
 <footer>琉生 &amp; 真由</footer>
 <script>
 const CLOSE_AT = new Date("2026-11-01T00:00:00+09:00");
-const SECRET = {"plain": {"videos": {"c1": "bByhGLAbvRM", "c2": "puBFcGYHul8", "c3": "dPLfDlkZ2ik", "c4": "ZsrZmL8fpu0", "c5": "BmBcLBHT3zE", "c6": "ohnKWZzuue8", "c7": "RbuYE-wdWnc", "c8": "KEQfwOeKfLU", "c9": "4tdnTFzpaPU"}}};
+const SECRET = {"salt": "DTVmx7BiTKTJcuOcR7Ka1A==", "iv": "80sybAJ+gtfJtivH", "ct": "XbXPELfiOOOSWUcp3YGRaaEble12OoXZ6zue2RXonm6ifU5Ulgs4iRSyiOKJzHKVOWPMb5f/7My2SoZDWJAzrl+XoiR7Ea1YFsBeFi0IeyfKAX5anc4LIMZhScweArwfrenENxkgMe+Ox7ty76kJnm2QbOaI9YaW3Ov9P6ZsrlqKFoIfpCLKhb7TLI0otQfnR6nCYvCx8LpUcrkPfs7Ict9zEWW3w9AMW/elfMKYjA==", "iter": 150000};
+const OPEN = {"videos": {"c1": "bByhGLAbvRM", "c5": "BmBcLBHT3zE"}};              // 謎解きなしのコミュニティ（家族など）：秘密の言葉なしで見られる動画
 if (new Date() >= CLOSE_AT) {
   document.body.innerHTML = '<div class="closed">公開は終了しました。<br>ご覧いただき、ありがとうございました。</div>';
 }
@@ -131,6 +142,10 @@ async function check() {
 }
 if (SECRET.plain) {                 // 秘密の言葉なし（テスト用）：すぐに動画を出す
   showMovie(SECRET.plain);
+} else if (OPEN.videos[team]) {     // 謎解きなしのコミュニティ：鍵と入力欄を出さずに、すぐ動画を出す
+  for (const id of ["lock", "order", "form", "done"]) document.getElementById(id).style.display = "none";
+  document.querySelector("#mystery h2").textContent = "Movie";
+  showMovie(OPEN);
 } else {
   document.getElementById("go").onclick = check;
   document.getElementById("pw").addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing) check(); });
